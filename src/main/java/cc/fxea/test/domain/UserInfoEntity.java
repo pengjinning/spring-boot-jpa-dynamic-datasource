@@ -13,6 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "t_user_info")
 public class UserInfoEntity {
+    
     private long id;
     private String name;
     private String age;

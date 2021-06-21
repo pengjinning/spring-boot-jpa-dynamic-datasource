@@ -13,6 +13,7 @@ import java.util.List;
  * @date 7/5/2020 21:38
  **/
 public interface IUserInfoService {
+    
     List<UserInfoEntity> findAll();
 
     UserInfoEntity save(UserInfoEntity userInfoEntity);

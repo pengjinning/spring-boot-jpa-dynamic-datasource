@@ -15,13 +15,12 @@ public class DynamicRoutingDataSourceContext {
 
     private static final ThreadLocal<Object> threadLocalDataSource = new ThreadLocal<>();
 
-
     public static void setRoutingDataSource(Object dataSource) {
         if (dataSource == null) {
             throw new NullPointerException();
         }
         threadLocalDataSource.set(dataSource);
-        // System.err.println(Thread.currentThread().getName()+" set RoutingDataSource : " + dataSource);
+        System.err.println(Thread.currentThread().getName()+" set RoutingDataSource : " + dataSource);
     }
 
     public static Object getRoutingDataSource() {
@@ -30,12 +29,12 @@ public class DynamicRoutingDataSourceContext {
             threadLocalDataSource.set(DynamicRoutingDataSourceContext.MASTER);
             return getRoutingDataSource();
         }
-        // System.err.println(Thread.currentThread().getName()+" get RoutingDataSource : " + dataSourceType);
+        System.err.println(Thread.currentThread().getName()+" get RoutingDataSource : " + dataSourceType);
         return dataSourceType;
     }
 
     public static void removeRoutingDataSource() {
         threadLocalDataSource.remove();
-        // System.err.println(Thread.currentThread().getName()+" remove RoutingDataSource");
+        System.err.println(Thread.currentThread().getName()+" remove RoutingDataSource");
     }
 }

@@ -44,6 +44,7 @@ public class DataSourceConfig {
     @Value("${spring.datasource.druid.master.driver-class-name}")
     private String masterDriverClassName;
 
+    // 
     @Value("${spring.datasource.druid.slave.name}")
     private String slaveName;
 
@@ -59,6 +60,7 @@ public class DataSourceConfig {
     @Value("${spring.datasource.druid.slave.driver-class-name}")
     private String slaveDriverClassName;
 
+    // 
     @Value("${spring.datasource.druid.initial-size}")
     private String initialSize;
 
@@ -158,10 +160,10 @@ public class DataSourceConfig {
     @Bean(name = "slaveDataSource")
     public DataSource slaveDataSource() {
         DruidDataSource datasource = new DruidDataSource();
-        datasource.setUrl(masterUrl);
-        datasource.setUsername(masterUsername);
-        datasource.setPassword(masterPassword);
-        datasource.setDriverClassName(masterDriverClassName);
+        datasource.setUrl(slaveUrl);
+        datasource.setUsername(slaveUsername);
+        datasource.setPassword(slavePassword);
+        datasource.setDriverClassName(slaveDriverClassName);
 
         //configuration
         if (!StringUtils.isEmpty(initialSize)) {

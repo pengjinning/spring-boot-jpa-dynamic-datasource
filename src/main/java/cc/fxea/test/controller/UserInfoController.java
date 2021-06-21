@@ -30,9 +30,9 @@ public class UserInfoController {
     @Autowired
     private IUserInfoService userInfoService;
 
-    @Autowired
-    @Qualifier(value = "threadPool")
-    private ExecutorService threadPool;
+    // @Autowired
+    // @Qualifier(value = "threadPool")
+    // private ExecutorService threadPool;
 
     @GetMapping("/findAll")
     public List<UserInfoEntity> findAll() {
@@ -55,16 +55,16 @@ public class UserInfoController {
         for (int i = 0; i < num; i++) {
             nums.add(i);
         }
-        List<List<Integer>> partition = ListUtils.partition(nums, 100);
-        for (List<Integer> objects : partition) {
-            threadPool.execute(() -> {
-                ArrayList<UserInfoEntity> list = new ArrayList<>();
-                for (int j = 0; j < objects.size(); j++) {
-                    list.add(generateUserInfo());
-                }
-                userInfoService.saveAll(list);
-            });
-        }
+        // List<List<Integer>> partition = ListUtils.partition(nums, 100);
+        // for (List<Integer> objects : partition) {
+        //     threadPool.execute(() -> {
+        //         ArrayList<UserInfoEntity> list = new ArrayList<>();
+        //         for (int j = 0; j < objects.size(); j++) {
+        //             list.add(generateUserInfo());
+        //         }
+        //         userInfoService.saveAll(list);
+        //     });
+        // }
         return "OK";
     }
 
@@ -75,8 +75,8 @@ public class UserInfoController {
         // String[] address = {"北京", "上海", "广州", "深圳", "武汉"};
         String[] deptCode = {"W00001", "W00002", "W00003", "W00004", "W00005"};
         double index = Math.floor((Math.random() * address.length));
+        // 
         return new UserInfoEntity("Mock" + nextInt, String.valueOf(random.nextInt(100)), String.valueOf(nextInt), address[(int) index], deptCode[(int) index], new Date(), new Date());
-
     }
 
     @RequestMapping("/insertOne")
